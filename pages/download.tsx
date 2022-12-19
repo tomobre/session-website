@@ -7,37 +7,235 @@ import Image from 'next/image';
 import { Layout } from '@/components/ui';
 import Link from 'next/link';
 import { ReactComponent as LinuxSVG } from '@/assets/svgs/linux.svg';
+import { ReactComponent as UbuntuSVG } from '@/assets/svgs/ubuntu.svg';
 import METADATA from '@/constants/metadata';
 import { ReactElement } from 'react';
 import { ReactComponent as WindowsSVG } from '@/assets/svgs/windows.svg';
 import classNames from 'classnames';
+import { useState } from 'react';
 
 export default function Download(): ReactElement {
-  const panelClasses = classNames(
-    'mx-auto text-center',
-    'lg:w-1/2 lg:flex lg:flex-col lg:pb-16'
-  );
-  const headingClasses = 'text-5xl font-semibold';
-  const subtitleClasses = classNames('text-2xl', 'lg:text-3xl');
-  const linkContainerClasses = classNames(
-    'flex flex-wrap justify-center pb-12',
-    'lg:items-center'
-  );
+  const subtitleClasses = classNames('text-xl', 'lg:text-3xl', 'my-5');
   const downloadContainerClasses = classNames(
-    'pb-2 lg:py-3 lg:border-r lg:border-dashed z-10'
+    'pb-2 lg:py-3  z-10 flex md:flex-row flex-col  justify-center items-center'
   );
   const downloadLinkClasses = classNames(
-    'text-lg font-bold rounded-3xl py-1 mr-4',
-    'md:text-3xl',
+    'text-lg font-bold md:rounded-3xl md:py-1 py-3 mr-4  border-b-2 md:border-none border-gray-200 border-dashed md:w-auto w-52',
+    'md:text-xl lg:text-3xl',
     'lg:pr-2 lg:ml-2',
     'transition-colors duration-300'
   );
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
+  const deviceButtonClasses =
+    'border-b-4 border-primary border-w-4 focus:outline-none';
+
+  const [device, setDevice] = useState(0);
+
+  const renderDevice = (device: number) => {
+    switch (device) {
+      case 0:
+        return (
+          <div className={classNames(downloadContainerClasses)}>
+            <Link href="/android">
+              <a
+                className={classNames(
+                  downloadLinkClasses,
+                  'lg:hover:bg-gray-dark lg:hover:text-primary'
+                )}
+              >
+                <AndroidSVG
+                  className={classNames(
+                    downloadSVGClasses,
+                    'w-6 h-6',
+                    'md:w-8 md:h-8'
+                  )}
+                />
+                <span>Android</span>
+              </a>
+            </Link>
+
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-gray-dark'
+              )}
+            >
+              <Link href="/apk">
+                <a
+                  className={classNames(
+                    downloadLinkClasses,
+                    'lg:hover:bg-gray-dark lg:hover:text-primary'
+                  )}
+                >
+                  <AndroidSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-6 h-6',
+                      'md:w-8 md:h-8'
+                    )}
+                  />
+                  <span>APK</span>
+                </a>
+              </Link>
+            </div>
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-gray-dark'
+              )}
+            >
+              <Link href="/f-droid">
+                <a
+                  className={classNames(
+                    downloadLinkClasses,
+                    'lg:hover:bg-gray-dark lg:hover:text-primary'
+                  )}
+                >
+                  <FDroidSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-5 h-5',
+                      'md:w-7 md:h-7'
+                    )}
+                  />
+                  <span>F-Droid</span>
+                </a>
+              </Link>
+            </div>
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-primary'
+              )}
+            >
+              <Link href="/iphone">
+                <a
+                  className={classNames(
+                    downloadLinkClasses,
+                    'lg:hover:bg-gray-dark lg:hover:text-primary'
+                  )}
+                >
+                  <AppleSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-4 h-4',
+                      'md:w-6 md:h-6'
+                    )}
+                  />
+                  <span>iPhone</span>
+                </a>
+              </Link>
+            </div>
+          </div>
+        );
+      case 1:
+        return (
+          <div className={classNames(downloadContainerClasses)}>
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-white'
+              )}
+            >
+              <a
+                className={classNames(
+                  downloadLinkClasses,
+                  'lg:hover:bg-gray-dark lg:hover:text-primary'
+                )}
+                href="/mac"
+              >
+                <AppleSVG
+                  className={classNames(
+                    downloadSVGClasses,
+                    'w-4 h-4',
+                    'md:w-6 md:h-6'
+                  )}
+                />
+                <span>Mac</span>
+              </a>
+            </div>
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-white'
+              )}
+            >
+              <a
+                className={classNames(
+                  downloadLinkClasses,
+                  'lg:hover:bg-gray-dark lg:hover:text-primary'
+                )}
+                href="/windows"
+              >
+                <WindowsSVG
+                  className={classNames(
+                    downloadSVGClasses,
+                    'w-4 h-4',
+                    'md:w-6 md:h-6'
+                  )}
+                />
+                <span>Windows</span>
+              </a>
+            </div>
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-gray-dark'
+              )}
+            >
+              <a
+                className={classNames(
+                  downloadLinkClasses,
+                  'lg:hover:bg-gray-dark lg:hover:text-primary'
+                )}
+                href="/linux"
+              >
+                <LinuxSVG
+                  className={classNames(
+                    downloadSVGClasses,
+                    'w-5 h-5',
+                    'md:w-7 md:h-7'
+                  )}
+                />
+                <span>Linux (AppImage)</span>
+              </a>
+            </div>
+            <div
+              className={classNames(
+                downloadContainerClasses,
+                'lg:border-gray-dark'
+              )}
+            >
+              <a
+                className={classNames(
+                  downloadLinkClasses,
+                  'lg:hover:bg-gray-dark lg:hover:text-primary'
+                )}
+                href="https://docs.oxen.io/products-built-on-oxen/session/guides/installing-on-linux-debian-based-distros"
+              >
+                <UbuntuSVG
+                  className={classNames(
+                    downloadSVGClasses,
+                    'w-5 h-5',
+                    'md:w-7 md:h-7'
+                  )}
+                />
+                <span>Linux (DEB)</span>
+              </a>
+            </div>
+          </div>
+        );
+
+      default:
+        break;
+    }
+  };
+
   return (
     <Layout title="Download" metadata={METADATA.DOWNLOAD_PAGE}>
       <section>
         <Container
-          hasMinHeight={true}
+          hasMinHeight={false}
           heights={{
             small: '100%',
             medium: '100%',
@@ -46,278 +244,37 @@ export default function Download(): ReactElement {
           classes={classNames(
             'px-0 py-0',
             'md:px-0 md:py-0',
-            'lg:-mt-4 lg:mb-4 lg:pl-0 lg:pr-0 lg:flex lg:max-w-none',
+            'lg:-mt-4 lg:mb-4 lg:pl-0 lg:pr-0 lg:flex flex-col lg:max-w-none',
             '2xl: mt-0'
           )}
         >
-          <div
-            className={classNames(
-              panelClasses,
-              'bg-primary text-gray-dark min-h-screen',
-              'lg:mr-2 lg:justify-between lg:items-end lg:min-h-full'
-            )}
-          >
-            <div
+          <div className="flex justify-center items-center">
+            <Image
+              width={1363}
+              height={694}
+              src="/assets/images/hero-download.png"
+            />
+          </div>
+          <div className={classNames(subtitleClasses, 'flex justify-center')}>
+            <button
               className={classNames(
-                'lg:w-3/4 lg:mr-8 lg:flex lg:flex-col lg:justify-between',
-                'xl:w-7/12',
-                '2xl:w-1/2 2xl:mr-24'
+                device === 0 ? deviceButtonClasses : 'mb-1',
+                'mr-20'
+              )}
+              onClick={() => setDevice(0)}
+            >
+              <strong> Mobile</strong>
+            </button>
+            <button
+              onClick={() => setDevice(1)}
+              className={classNames(
+                device === 1 ? deviceButtonClasses : 'mb-1'
               )}
             >
-              <p
-                className={classNames(
-                  subtitleClasses,
-                  'pt-20',
-                  'lg:pt-20',
-                  'xl:pt-8',
-                  '2xl:pt-20'
-                )}
-              >
-                Download Session for
-              </p>
-              <h2 className={classNames(headingClasses, 'my-4')}>Mobile</h2>
-              <div
-                className={classNames(
-                  '-mt-2 -ml-1 px-16 mb-3',
-                  'md:-mt-5 md:px-48',
-                  'lg:mt-0 lg:px-0 lg:w-2/3 lg:mx-auto'
-                )}
-              >
-                <Image
-                  src="/assets/images/ui-create-account.png"
-                  alt="mobile app create account screenshot"
-                  width="1148px"
-                  height="2000px"
-                  layout="responsive"
-                  priority={true}
-                  loading="eager"
-                />
-              </div>
-              <div className={classNames(linkContainerClasses)}>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
-                  <Link href="/android">
-                    <a
-                      className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-gray-dark lg:hover:text-primary'
-                      )}
-                    >
-                      <AndroidSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-6 h-6',
-                          'md:w-8 md:h-8'
-                        )}
-                      />
-                      <span>Android</span>
-                    </a>
-                  </Link>
-                </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
-                  <Link href="/apk">
-                    <a
-                      className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-gray-dark lg:hover:text-primary'
-                      )}
-                    >
-                      <AndroidSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-6 h-6',
-                          'md:w-8 md:h-8'
-                        )}
-                      />
-                      <span>APK</span>
-                    </a>
-                  </Link>
-                </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
-                  <Link href="/f-droid">
-                    <a
-                      className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-gray-dark lg:hover:text-primary'
-                      )}
-                    >
-                      <FDroidSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-5 h-5',
-                          'md:w-7 md:h-7'
-                        )}
-                      />
-                      <span>F-Droid</span>
-                    </a>
-                  </Link>
-                </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-primary'
-                  )}
-                >
-                  <Link href="/iphone">
-                    <a
-                      className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-gray-dark lg:hover:text-primary'
-                      )}
-                    >
-                      <AppleSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-4 h-4',
-                          'md:w-6 md:h-6'
-                        )}
-                      />
-                      <span>iPhone</span>
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            </div>
+              <strong> Desktop</strong>
+            </button>
           </div>
-          <div
-            className={classNames(
-              panelClasses,
-              'bg-gray-dark text-white',
-              'lg:ml-2 lg:justify-between lg:items-start'
-            )}
-          >
-            <div
-              className={classNames(
-                'lg:w-3/4 lg:ml-10 lg:h-full lg:flex lg:flex-col lg:justify-between',
-                'xl:w-7/12',
-                '2xl:w-1/2 2xl:ml-24'
-              )}
-            >
-              <p
-                className={classNames(
-                  subtitleClasses,
-                  'pt-20',
-                  'lg:pt-20',
-                  'xl:pt-8',
-                  '2xl:pt-20'
-                )}
-              >
-                Download Session for
-              </p>
-              <h2 className={classNames(headingClasses, 'mt-4', 'lg:mb-auto')}>
-                Desktop
-              </h2>
-              <div
-                className={classNames(
-                  'px-3 -ml-1 z-0',
-                  'md:px-16',
-                  'lg:px-0 lg:mt-2 lg:ml-0 lg:-mr-6 lg:mb-auto',
-                  'xl:-mr-8'
-                )}
-              >
-                <Image
-                  src="/assets/images/mockup-desktop.png"
-                  alt="desktop app screenshot"
-                  width="2477px"
-                  height="3000px"
-                  layout="responsive"
-                  priority={true}
-                  loading="eager"
-                />
-              </div>
-              <div
-                className={classNames(
-                  linkContainerClasses,
-                  'md:-mt-8 md:pb-32',
-                  'lg:pb-12'
-                )}
-              >
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-white'
-                  )}
-                >
-                  <a
-                    className={classNames(
-                      downloadLinkClasses,
-                      'lg:hover:bg-white lg:hover:text-gray-dark'
-                    )}
-                    href="/mac"
-                  >
-                    <AppleSVG
-                      className={classNames(
-                        downloadSVGClasses,
-                        'w-4 h-4',
-                        'md:w-6 md:h-6'
-                      )}
-                    />
-                    <span>Mac</span>
-                  </a>
-                </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-white'
-                  )}
-                >
-                  <a
-                    className={classNames(
-                      downloadLinkClasses,
-                      'lg:hover:bg-white lg:hover:text-gray-dark'
-                    )}
-                    href="/windows"
-                  >
-                    <WindowsSVG
-                      className={classNames(
-                        downloadSVGClasses,
-                        'w-4 h-4',
-                        'md:w-6 md:h-6'
-                      )}
-                    />
-                    <span>Windows</span>
-                  </a>
-                </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
-                  <a
-                    className={classNames(
-                      downloadLinkClasses,
-                      'lg:hover:bg-white lg:hover:text-gray-dark'
-                    )}
-                    href="/linux"
-                  >
-                    <LinuxSVG
-                      className={classNames(
-                        downloadSVGClasses,
-                        'w-5 h-5',
-                        'md:w-7 md:h-7'
-                      )}
-                    />
-                    <span>Linux</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div>{renderDevice(device)}</div>
         </Container>
       </section>
     </Layout>
