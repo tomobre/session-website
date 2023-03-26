@@ -36,6 +36,11 @@ const securityHeaders = () => {
       value: 'SAMEORIGIN',
     },
     {
+      key: 'frame-ancestors',
+      value:
+        'https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org',
+    },
+    {
       key: 'Permissions-Policy',
       value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
     },
