@@ -32,6 +32,11 @@ const securityHeaders = () => {
       value: '1; mode=block',
     },
     {
+      key: 'X-Frame-Options',
+      value:
+        'ALLOW-FROM https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org',
+    },
+    {
       key: 'frame-ancestors',
       value:
         'https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org',
