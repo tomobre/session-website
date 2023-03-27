@@ -9,8 +9,8 @@ const ContentSecurityPolicy = `
       : ''
   }*.ctfassets.net *.youtube.com *.twitter.com;
   child-src 'self' *.ctfassets.net *.youtube.com player.vimeo.com *.twitter.com;
-  frame-src 'self' https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org;
-  frame-ancestors 'self' https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org;
+  frame-src 'self' https://lokinet.org https://optf.ngo https://oxen.io https://staging.oxen.io;
+  frame-ancestors 'self' https://lokinet.org https://optf.ngo https://oxen.io https://staging.oxen.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src 'self' blob: data: *.ctfassets.net *.youtube.com *.twitter.com;
   media-src 'self' *.youtube.com;
@@ -34,16 +34,16 @@ const securityHeaders = () => {
       value: '1; mode=block',
     },
     {
+      key: 'X-Frame-Options',
+      value: 'SAMEORIGIN',
+    },
+    {
       key: 'Permissions-Policy',
       value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
     },
     {
       key: 'X-Content-Type-Options',
       value: 'nosniff',
-    },
-    {
-      key: 'X-Frame-Options',
-      value: 'SAMEORIGIN',
     },
     {
       key: 'Referrer-Policy',
