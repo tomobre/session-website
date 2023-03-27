@@ -33,7 +33,7 @@ const securityHeaders = () => {
     },
     {
       key: 'X-Frame-Options',
-      value: 'allow-from *',
+      value: 'SAMEORIGIN',
     },
     {
       key: 'frame-ancestors',
