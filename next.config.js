@@ -9,6 +9,7 @@ const ContentSecurityPolicy = `
       : ''
   }*.ctfassets.net *.youtube.com *.twitter.com;
   child-src 'self' *.ctfassets.net *.youtube.com player.vimeo.com *.twitter.com;
+  frame-ancestors 'self' https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src 'self' blob: data: *.ctfassets.net *.youtube.com *.twitter.com;
   media-src 'self' *.youtube.com;
@@ -30,16 +31,6 @@ const securityHeaders = () => {
     {
       key: 'X-XSS-Protection',
       value: '1; mode=block',
-    },
-    {
-      key: 'X-Frame-Options',
-      value:
-        'ALLOW-FROM https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org',
-    },
-    {
-      key: 'frame-ancestors',
-      value:
-        'https://optf.ngo/ https://staging.oxen.io/ https://oxen.io/ https://lokinet.org',
     },
     {
       key: 'Permissions-Policy',
