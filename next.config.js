@@ -9,7 +9,7 @@ const ContentSecurityPolicy = `
       : ''
   }*.ctfassets.net *.youtube.com *.twitter.com;
   child-src 'self' *.ctfassets.net *.youtube.com player.vimeo.com *.twitter.com;
-  frame-src 'self' https://lokinet.org https://optf.ngo https://oxen.io https://staging.oxen.io;
+  frame-src 'self' https://lokinet.org https://optf.ngo https://oxen.io https://staging.oxen.io *.youtube.com;
   frame-ancestors 'self' https://lokinet.org https://optf.ngo https://oxen.io https://staging.oxen.io;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src 'self' blob: data: *.ctfassets.net *.youtube.com *.twitter.com;
